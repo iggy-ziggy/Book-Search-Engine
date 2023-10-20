@@ -9,10 +9,13 @@ import {
 } from 'react-bootstrap';
 
 import Auth from '../utils/auth';
-import { saveBook, searchGoogleBooks } from '../utils/API';
+// import { saveBook, searchGoogleBooks } from '../utils/API';
+import { useMutation } from '@apollo/client';
+import { ADD_BOOK } from '../utils/mutations';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
 const SearchBooks = () => {
+  const [saveBook, { error }] = useMutation(ADD_BOOK);
   // create state for holding returned google api data
   const [searchedBooks, setSearchedBooks] = useState([]);
   // create state for holding our search field data
