@@ -4,7 +4,6 @@ import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
 import { ADD_USER } from "../utils/mutations";
 
-
 const SignupForm = () => {
   // set initial form state
   const [userFormData, setUserFormData] = useState({
@@ -27,22 +26,22 @@ const SignupForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault();
       event.stopPropagation();
-    }
+    } else {
+      try {
+        const { data } = await AddUser({
+          variables: userFormData,
+        });
 
-    try {
-      console.log(userFormData);
-      const { data } = await AddUser({
-        variables: userFormData,
-      });
-      Auth.login(data.addUser.token);
-    } catch (err) {
-      console.error(err);
-      setShowAlert(true);
+        const token = data.addUser.token;
+        const user = data.addUser.user;
+        Auth.login(token);
+      } catch (err) {
+        console.error(err);
+        setShowAlert(true);
+      }
     }
 
     setUserFormData({
