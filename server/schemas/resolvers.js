@@ -5,14 +5,11 @@ const resolvers = {
   // retrieves a specific user by their username. Includes the user's saved books when returning the data
   Query: {
     getMe: async (parent, args, context) => {
-      console.log("Running query getMe - retrieving data from signed in user");
       console.log(context.user);
       if (context.user) {
-        console.log("Within IF statement in resolvers");
         const userData = await User.findOne({ _id: context.user._id }).select(
           "-__v -password"
         );
-        console.log("Here is the user data being returned:");
         console.log(userData);
         return userData;
       }
