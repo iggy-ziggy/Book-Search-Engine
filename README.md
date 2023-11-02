@@ -26,6 +26,9 @@ After cloning, run `npm i` in your terminal to install dependencies. Once instal
 
 From the home page, you can search for books or click the nav link to either login or sign up. If not logged in, you can search for books but cannot save them to your collection. After successfully logging in, you will be given the option to save any searched books and see them by clicking "See Your Books" in the nav bar.
 
+* Deploy:
+  https://fast-ravine-33999-198416dd3e8c.herokuapp.com/
+  
 ### Images
 
 * Home/Not logged in
